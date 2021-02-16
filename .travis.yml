@@ -7,7 +7,9 @@ before_install:
 
 
 script:
-  - docker run -e CI=true gerwel/docker-react-test npm test
+  - docker run -p 8081:3000 gerwel/docker-react-test 
+  - curl localhost:8081
+
 
 
 after_success:
