@@ -8,7 +8,7 @@ before_install:
 
 script:
   - docker run -d -p 8081:3000 gerwel/docker-react-test 
-  - curl localhost:8081
+  - docker ps
 
 
 
