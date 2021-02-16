@@ -3,7 +3,35 @@
         {
             "name": "client",
             "image": "gerwel/multi-client",
-            "hostname": "client"
+            "hostname": "client",
+            "essential": false
+        },
+        {
+         "name" : "server",
+         "image" : "gerwel/multi-server",
+         "hostname": "api",
+         "essential": false   
+        },
+        {
+        "name" : "worker",
+        "image" : "gerwel/multi-worker",
+        "hostname": "worker",
+        "essential": false   
+        },
+        {
+        "name" : "nginx",
+        "image" : "gerwel/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings":[
+            {
+                "hostPort": 80,
+                "containerPort": 80
+            }
+        ] ,
+        "links": [
+            "client","server"
+        ]
         }
     ]
 }
