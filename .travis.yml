@@ -7,7 +7,7 @@ before_install:
 
 
 script:
-  - docker run gerwel/docker-react-test:latest npm test -- --coverage
+  - docker run -e CI=true gerwel/docker-react-test npm test
 
 
 after_success:
