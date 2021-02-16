@@ -24,15 +24,14 @@ after_success:
   - docker push gerwel/multi-nginx
 
 deploy:
-  edge: true
   provider: elasticbeanstalk
-  region: us-east-2
+  region: "us-east-2"
   app: multi-docker
   env: Multidocker-env
   bucket_name: elasticbeanstalk-us-east-2-063353694214
   bucke_path: dockermulti 
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: 
-    secure: $AWS_SECRET_KEY
+    secure: "$AWS_SECRET_KEY"
   on:
     branch: main
