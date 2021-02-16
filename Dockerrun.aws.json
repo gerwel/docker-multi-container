@@ -1,0 +1,9 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "gerwel/multi-client",
+            "hostname": "client"
+        }
+    ]
+}
