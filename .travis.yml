@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t gerwel/docker-react-test:latest -f ./client/Dockerfile.dev ./client
+
+
+script:
+  - docker run gerwel/docker-react-test:latest npm test -- --coverage
+
+
+after_success:
+  - docker build -t gerwel/multi-client:latest ./client
+  - docker build -t gerwel/multi-server:latest ./server
+  - docker build -t gerwel/multi-worker:latest ./worker
+  - docker build -t gerwel/multi-nginx:latest ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID" --password-stdin
+  - docker push gerwel/multi-client
+  - docker push gerwel/multi-server
+  - docker push gerwel/multi-worker
+  - docker push gerwel/multi-nginx
